@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Real-Time Voice Translator</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div class="hero-left">
+          <h1>AI Real-Time Voice Translator</h1>
+          <p class="subtitle">
+            Speak naturally for up to ~20 seconds. The app detects, translates, and speaks instantly.
+            <span class="kbd">Ctrl+Enter</span> to start, <span class="kbd">Esc</span> to stop.
+          </p>
+        </div>
+        <div class="hero-right status">
+          <div class="status-row">
+            <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+            <div class="status-text">
+              <div class="status-title" id="statusLabel">Status: Idle</div>
+              <div class="status-detected" id="detectedLabel">Detected: -</div>
+            </div>
+          </div>
+          <div class="spinner-wrap" id="spinnerWrap">
+            <div class="spinner" id="spinner"></div>
+          </div>
+          <div class="speaking" id="speakingLabel">Now speaking: -</div>
+        </div>
+      </header>
+
+      <section class="controls card">
+        <div class="control-grid">
+          <label class="field">
+            <span>Source Language</span>
+            <select id="sourceSelect"></select>
+          </label>
+
+          <label class="field">
+            <span>Target Language</span>
+            <select id="targetSelect"></select>
+          </label>
+
+          <label class="field">
+            <span>Translation Engine</span>
+            <select id="engineSelect"></select>
+          </label>
+
+          <div class="actions">
+            <button id="startBtn" class="btn btn-primary">Start Listening</button>
+            <button id="stopBtn" class="btn btn-danger" disabled>Stop</button>
+          </div>
+        </div>
+      </section>
+
+      <main class="panes">
+        <section class="pane">
+          <div class="pane-head">
+            <h2>Original Speech</h2>
+            <div class="pane-actions">
+              <button id="copyOriginalBtn" class="ghost-btn">Copy</button>
+              <button id="clearOriginalBtn" class="ghost-btn">Clear</button>
+            </div>
+          </div>
+          <textarea id="originalText" class="text-box" readonly></textarea>
+        </section>
+
+        <section class="pane">
+          <div class="pane-head">
+            <h2>Translated Speech</h2>
+            <div class="pane-actions">
+              <button id="copyTranslatedBtn" class="ghost-btn">Copy</button>
+              <button id="clearTranslatedBtn" class="ghost-btn">Clear</button>
+            </div>
+          </div>
+          <textarea id="translatedText" class="text-box" readonly></textarea>
+        </section>
+      </main>
+
+      <section class="history card">
+        <div class="history-head">
+          <h2>Translation History</h2>
+          <button id="clearHistoryBtn" class="ghost-btn">Clear History</button>
+        </div>
+        <div id="historyText" class="history-text" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <audio id="audioPlayer" preload="none"></audio>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
