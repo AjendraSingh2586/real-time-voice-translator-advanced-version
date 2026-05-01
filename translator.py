@@ -47,7 +47,7 @@ class TranslationService:
 
         try:
             google = GoogleTranslator()
-            detected = google.detect(text)   # ❌ no asyncio.run
+            detected = google.detect(text)   # no asyncio.run
             code = (detected.lang or "unknown").lower()
             return code, get_language_name_from_code(code)
         except Exception:
@@ -138,7 +138,7 @@ class TranslationService:
         try:
             source = source_code if source_code != "unknown" else "auto"
             google = GoogleTranslator()
-            translated = google.translate(text, src=source, dest=target_code)  # ❌ no asyncio
+            translated = google.translate(text, src=source, dest=target_code)  #  no asyncio
             return translated.text
         except Exception as exc:
             raise TranslationError(f"Google translation failed: {exc}") from exc
